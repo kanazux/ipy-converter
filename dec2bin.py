@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.6
 # -*- coding: UTF-8 -*-
 """
 
@@ -82,5 +82,5 @@ def convert_ip(dec_number):
 ip_list_bin = convert_ip(ip)
 
 
-print ".".join(ip_list_bin)
-print ".".join(["{0:08b}".format(int(x)) for x in ip.split('.')])
+print(".".join(ip_list_bin))
+print(".".join(["{0:08b}".format(int(x)) for x in ip.split('.')]))
