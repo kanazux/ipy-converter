@@ -3,7 +3,7 @@
 
 from unittest import TestCase, main
 from collections import defaultdict
-from dec2bin import dict_values
+from ipy_converter.dec2bin import dict_values
 
 
 class testDictValues(TestCase):
