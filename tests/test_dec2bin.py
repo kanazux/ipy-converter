@@ -21,10 +21,5 @@ class testConvertIp(TestCase):
         self.assertTrue(pattern.match(convert_ip('192.168.0.255')))
 
 
-class testConvertIpRegex(TestCase):
-    def test_convert_ip_regex(self):
-        self.assertRegex(convert_ip('192.168.1.1'), r"([0|1]{8}\.){3}[0|1]{8}")
-
-
 if __name__ == "__main__":
     main()
