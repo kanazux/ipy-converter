@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Tests for dec2bin files"""
 
 

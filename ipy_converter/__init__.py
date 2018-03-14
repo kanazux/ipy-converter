@@ -1,1 +1,1 @@
-from .dec2bin import * # NOQA
+from .dec2bin import *  # NOQA

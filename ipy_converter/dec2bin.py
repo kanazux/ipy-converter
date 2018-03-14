@@ -1,5 +1,4 @@
-#!/usr/bin/python3.6
-# -*- coding: UTF-8 -*-
+#!/usr/bin/python3
 """
 
 Convert decimal to bin.
@@ -9,21 +8,7 @@ Shows math process and output result in a table.
 """
 
 
-import sys
 from collections import defaultdict
-
-
-def print_help():
-    """Show help."""
-    print ("Para usar esse conversor use um unico argumento para ip e mascara."
-           " Ex: 192.168.0.1 ")
-    print ("Para mascaras pode ser usada tanto notação decimal quanto binario."
-           " Ex: 192.168.0.1/24 ou 192.168.0.1/255.255.255.0")
-
-
-if len(sys.argv) != 2 or sys.argv[1].lower() == "-h":
-    print_help()
-    sys.exit(0)
 
 
 def dict_values():
@@ -41,14 +26,6 @@ def dict_values():
     return d_list
 
 
-list_values = dict_values()
-ip = sys.argv[1]
-mask = False
-
-if "/" in ip:
-    ip, mask = ip.split("/")
-
-
 def convert_ip(dec_number):
     """Convert ip in decimal notation to binary."""
     _ip_list_bin = []
@@ -62,13 +39,13 @@ def convert_ip(dec_number):
         elif _i == 255:
             _ip_list_bin.append("11111111")
             continue
-        _t = [x for x in list_values if x <= _i]
+        _t = [x for x in dict_values() if x <= _i]
         if len(_t) > 0:
             _n = max(_t)
         _v = _i - _n
         while True:
-            _bin[list_values[_n]] = 1
-            _t = [x for x in list_values if x <= _v]
+            _bin[dict_values()[_n]] = 1
+            _t = [x for x in dict_values() if x <= _v]
             if len(_t) > 0:
                 _n = max(_t)
             else:
@@ -76,11 +53,4 @@ def convert_ip(dec_number):
             _v = _v - _n
         _ip_list_bin.append("".join(map(str, _bin)))
 
-    return _ip_list_bin
-
-
-ip_list_bin = convert_ip(ip)
-
-
-print(".".join(ip_list_bin))
-print(".".join(["{0:08b}".format(int(x)) for x in ip.split('.')]))
+    return ".".join(_ip_list_bin)
