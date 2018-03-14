@@ -18,7 +18,7 @@ class testDictValues(TestCase):
 
 class testConvertIp(TestCase):
     def test_convert_ip(self):
-        self.assertTrue(pattern.match(convert_ip('192.168.1.1')))
+        self.assertTrue(pattern.match(convert_ip('192.168.0.255')))
 
 
 if __name__ == "__main__":

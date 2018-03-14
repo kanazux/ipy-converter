@@ -35,22 +35,21 @@ def convert_ip(dec_number):
         _i = int(i)
         if _i == 0:
             _ip_list_bin.append("00000000")
-            continue
         elif _i == 255:
             _ip_list_bin.append("11111111")
-            continue
-        _t = [x for x in dict_values() if x <= _i]
-        if len(_t) > 0:
-            _n = max(_t)
-        _v = _i - _n
-        while True:
-            _bin[dict_values()[_n]] = 1
-            _t = [x for x in dict_values() if x <= _v]
+        else:
+            _t = [x for x in dict_values() if x <= _i]
             if len(_t) > 0:
                 _n = max(_t)
-            else:
-                break
-            _v = _v - _n
+            _v = _i - _n
+            while True:
+                _bin[dict_values()[_n]] = 1
+                _t = [x for x in dict_values() if x <= _v]
+                if len(_t) > 0:
+                    _n = max(_t)
+                else:
+                    break
+                _v = _v - _n
         _ip_list_bin.append("".join(map(str, _bin)))
 
     return ".".join(_ip_list_bin)
