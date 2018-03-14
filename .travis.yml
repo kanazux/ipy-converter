@@ -2,8 +2,10 @@ language: python
 python:
     '3.6'
 install:
-    pip install tox-travis
+    pip install tox-travis coverage
 script:
     python setup.py test
 script:
     tox
+script:
+    coverage run --source=ipy_converter -m unittest discover -s tests/
