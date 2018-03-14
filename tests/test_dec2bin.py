@@ -2,9 +2,13 @@
 """Tests for dec2bin files"""
 
 
+import re
 from unittest import TestCase, main
 from collections import defaultdict
 from ipy_converter.dec2bin import dict_values, convert_ip
+
+
+pattern = re.compile(r"([0|1]{8}\.){3}[0|1]{8}")
 
 
 class testDictValues(TestCase):
@@ -14,7 +18,7 @@ class testDictValues(TestCase):
 
 class testConvertIp(TestCase):
     def test_convert_ip(self):
-        self.assertRegex(convert_ip('192.168.1.1'), "([0|1]{8}\.){3}[0|1]{8}")
+        self.assertTrue(pattern.match(convert_ip('192.168.1.1')))
 
 
 if __name__ == "__main__":
