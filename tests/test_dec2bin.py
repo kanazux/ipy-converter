@@ -14,7 +14,7 @@ class testDictValues(TestCase):
 
 class testConvertIp(TestCase):
     def test_convert_ip(self):
-        self.assertRegex(convert_ip('192.168.1.1'), r"([0|1]{8}\.){3}[0|1]{8}")
+        self.assertRegex(convert_ip('192.168.1.1'), "([0|1]{8}\.){3}[0|1]{8}")
 
 
 if __name__ == "__main__":
