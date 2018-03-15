@@ -1,11 +1,11 @@
 language: python
 python:
-    '3.6'
+  '3.6'
 install:
-    pip install tox-travis coverage
+  pip install tox-travis coverage
 script:
-    python setup.py test
+  python setup.py test
 script:
-    tox
+  tox
 script:
-    coverage run --source=ipy_converter -m unittest discover -s tests/
+  coverage run --source=ipy_converter -m unittest discover -s tests/
