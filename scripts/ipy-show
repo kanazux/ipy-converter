@@ -16,8 +16,7 @@ PS: Explain the name:
 
 import re
 import sys
-from ipy_converter import *
-from collections import defaultdict
+from ipy_show import return_ip_data
 
 
 def check_ip():
@@ -40,7 +39,8 @@ def print_output(ip_data):
     print("|{0: ^55}|".format("_" * 55))
     print("|{0: ^55}|".format(""))
     for i in [(x, ip_data[x]) for x in ip_data]:
-        print("| {0:<16}: ".format(i[0].replace("_", " ")) + "{0: <35} |".format(i[1]))
+        print("| {0:<16}: ".format(i[0].replace("_", " "))
+              + "{0: <35} |".format(i[1]))
     print("|{0: ^55}|".format("_" * 55))
 
 

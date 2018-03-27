@@ -13,5 +13,5 @@ setup(name="ipy_converter",
                         " the network ip and broadast."),
       author='Silvio Ap Silva a.k.a Kanazuchi',
       author_email='contato@kanazuchi.com',
-      url='http://github.com/kanazux/ipy-converter',
+      url='http://github.com/kanazux/ipy-show',
       zip_safe=False)
