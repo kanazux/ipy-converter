@@ -4,3 +4,5 @@
 .coverage
 htmlcov/*
 .cc_token
+*.egg-info
+*.eggs

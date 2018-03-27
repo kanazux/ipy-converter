@@ -2,7 +2,9 @@ from setuptools import setup
 
 
 setup(name="ipy_converter",
-      packages=["ipy_converter"],
+      packages=["ipy_show"],
+      license="BSD2CLAUSE",
+      install_requires=['ipaddress'],
       scripts=['scripts/ipy-show'],
       version='0.1',
       description='A simple ip converter and stats.',

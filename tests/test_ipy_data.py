@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""Tests for dec2bin files"""
+"""Tests for ipy_data files"""
 
 
 import re
 from unittest import TestCase, main
 from collections import defaultdict
-from ipy_converter.dec2bin import dict_values, convert_ip
+from ipy_show.ipy_data import dict_values, convert_ip
 
 
 pattern = re.compile(r"([0|1]{8}\.){3}[0|1]{8}")
