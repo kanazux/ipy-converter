@@ -1,7 +1,7 @@
 from setuptools import setup
 
 
-setup(name="ipy_converter",
+setup(name="ipy-show",
       packages=["ipy_show"],
       license="BSD2CLAUSE",
       install_requires=['ipaddress'],
