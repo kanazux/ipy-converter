@@ -9,6 +9,7 @@ Shows math process and output result in a table.
 
 
 from collections import defaultdict
+from ipaddress import IPv4Address, IPv4Network
 
 
 def dict_values():
@@ -61,6 +62,15 @@ def convert_mask(mask):
                      for i in range(0, 32, 8)])
 
 
+def return_mask(mask):
+    """Return full mask."""
+    b_mask = convert_mask(mask)
+    return ".".join(
+        map(str, [int(sum([list(dict_values().keys())[x[0]] for x in list(
+            enumerate(map(int, list(i)))) if x[1] == 1])) 
+                  for i in b_mask.split('.')]))
+
+
 def return_network(ip, mask):
     """Return network with an and operation."""
     b_ip = convert_ip(ip).replace('.', '')
@@ -94,3 +104,50 @@ def return_broadcast(ip, mask):
     return ".".join(
         map(str, [int(sum([list(dict_values().keys())[x[0]] for x in list(
             enumerate(map(int, list(i)))) if x[1] == 1])) for i in b_mask]))
+
+
+def return_class(ip):
+    if IPv4Address(ip) in IPv4Network(("10.0.0.0", "255.0.0.0")):
+        return "Class A Private"
+    elif IPv4Address(ip) in IPv4Network(("39.0.0.0", "255.0.0.0")):
+        return "Class A Reserved"
+    elif IPv4Address(ip) in IPv4Network(("127.0.0.0", "255.0.0.0")):
+        return "Class A Loopback"
+    elif IPv4Address(ip) in IPv4Network(("128.0.0.0", "255.255.0.0")):
+        return "Class B Reserved (IANA)"
+    elif IPv4Address(ip) in IPv4Network(("169.254.0.0", "255.255.0.0")):
+        return "Zeroconf"
+    elif IPv4Address(ip) in IPv4Network(("172.16.0.0", "255.240.0.0")):
+        return "Class B Private"
+    elif IPv4Address(ip) in IPv4Network(("191.255.0.0", "255.255.0.0")):
+        return "Class B Reseved (IANA)"
+    elif IPv4Address(ip) in IPv4Network(("192.0.2.0", "255.255.255.0")):
+        return "Class C Documentation"
+    elif IPv4Address(ip) in IPv4Network(("192.88.99.0", "255.255.255.0")):
+        return "Class C Relay Anycast (IPv6 to IPv4)"
+    elif IPv4Address(ip) in IPv4Network(("192.168.0.0", "255.255.0.0")):
+        return "Class C Private"
+    elif IPv4Address(ip) in IPv4Network(("198.18.0.0", "255.254.0.0")):
+        return "Class C Benchmarking Network"
+    elif IPv4Address(ip) in IPv4Network(("223.255.255.0", "255.255.255.0")):
+        return "Class C Reserver to Internet"
+    elif IPv4Address(ip) in IPv4Network(("224.0.0.0", "240.0.0.0")):
+        return "Class D Multicast"
+    elif IPv4Address(ip) in IPv4Network(("240.0.0.0", "240.0.0.0")):
+        return "Class E Reserved"
+    else:
+        return "Public Address"
+
+
+def return_ip_data(ip, mask):
+    ip_data = defaultdict(lambda: False)
+    ip_data['Ip'] = ip
+    ip_data['Network_Ip'] = return_network(ip, mask)
+    ip_data['Broadcast_Ip'] = return_broadcast(ip, mask)
+    ip_data['Class'] = return_class(ip)
+    ip_data['Full_Mask'] = return_mask(mask)
+    ip_data['Max_Networks'] = networks_number(mask)
+    ip_data['Max_Hosts'] = hosts_number(mask)
+    ip_data['Binary_Ip'] = convert_ip(ip)
+    ip_data['Binary_Mask'] = convert_mask(mask)
+    return ip_data
