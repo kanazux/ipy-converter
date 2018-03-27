@@ -6,3 +6,5 @@ htmlcov/*
 .cc_token
 *.egg-info
 *.eggs
+build/*
+dist/*
