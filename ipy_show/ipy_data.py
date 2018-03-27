@@ -65,7 +65,7 @@ def return_mask(mask):
     b_mask = convert_mask(mask)
     return ".".join(
         map(str, [int(sum([list(dict_values().keys())[x[0]] for x in list(
-            enumerate(map(int, list(i)))) if x[1] == 1])) 
+            enumerate(map(int, list(i)))) if x[1] == 1]))
                   for i in b_mask.split('.')]))
 
 
@@ -88,7 +88,7 @@ def hosts_number(mask):
 
 def networks_number(mask):
     """Return number of sub nets based on network mask."""
-    return int(2**(32-24-2))
+    return int(2**(32-int(mask)-2))
 
 
 def return_broadcast(ip, mask):
