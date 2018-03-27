@@ -6,7 +6,7 @@ A simple lib to show ip data, network, broadcast, max hosts on network, max netw
 
 >Usage: ipy-show git:(master) ipy-show 10.41.35.117/11
 
-####Output:####
+#### Output: ####
 
 ```
  _______________________________________________________
