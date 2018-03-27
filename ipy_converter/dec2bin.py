@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """
-
 Convert decimal to bin.
 
 Shows math process and output result in a table.
-
 """
 
 
