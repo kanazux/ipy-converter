@@ -29,7 +29,6 @@ def dict_values():
 def convert_ip(dec_number):
     """Convert ip in decimal notation to binary."""
     _ip_list_bin = []
-
     for i in dec_number.split('.'):
         _bin = [0, 0, 0, 0, 0, 0, 0, 0]
         _i = int(i)
@@ -53,7 +52,6 @@ def convert_ip(dec_number):
                     break
                 _v = _v - _n
         _ip_list_bin.append("".join(map(str, _bin)))
-
     return ".".join(_ip_list_bin)
 
 
@@ -87,8 +85,10 @@ def networks_number(mask):
 
 def return_broadcast(ip, mask):
     """Return broadcast."""
+    rev = ['1', '0']
     b_network = convert_ip(return_network(ip, mask)).replace('.', '')
-    r_mask = "".join(list(reversed(convert_mask(mask)))).replace('.', '')
+    r_mask = "".join([rev[x] for x in map(int, list(
+        convert_mask(mask).replace('.', '')))])
     b_mask = ["".join(map(str, [int(x[0]) | int(x[1]) for x in list(zip(
         b_network, r_mask))]))[i:i+8] for i in range(0, 32, 8)]
     return ".".join(
