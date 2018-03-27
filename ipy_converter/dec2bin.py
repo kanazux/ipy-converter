@@ -55,3 +55,42 @@ def convert_ip(dec_number):
         _ip_list_bin.append("".join(map(str, _bin)))
 
     return ".".join(_ip_list_bin)
+
+
+def convert_mask(mask):
+    """Convert mask in slash notation to binary."""
+    return ".".join(['{:032}'.format(int('1'*int(mask)))[::-1][i:i+8]
+                     for i in range(0, 32, 8)])
+
+
+def return_network(ip, mask):
+    """Return network with an and operation."""
+    b_ip = convert_ip(ip).replace('.', '')
+    b_mask = convert_mask(mask).replace('.', '')
+    b_network = [
+        "".join(map(str, [int(x[0]) & int(x[1]) for x in list(
+            zip(b_ip, b_mask))]))[i:i+8] for i in range(0, 32, 8)]
+    return ".".join(
+        map(str, [int(sum([list(dict_values().keys())[x[0]] for x in list(
+            enumerate(map(int, list(i)))) if x[1] == 1])) for i in b_network]))
+
+
+def hosts_number(mask):
+    """Return number of hosts based on network mask."""
+    return int(2**(32-int(mask))-2)
+
+
+def networks_number(mask):
+    """Return number of sub nets based on network mask."""
+    return int(2**(32-24-2))
+
+
+def return_broadcast(ip, mask):
+    """Return broadcast."""
+    b_network = convert_ip(return_network(ip, mask)).replace('.', '')
+    r_mask = "".join(list(reversed(convert_mask(mask)))).replace('.', '')
+    b_mask = ["".join(map(str, [int(x[0]) | int(x[1]) for x in list(zip(
+        b_network, r_mask))]))[i:i+8] for i in range(0, 32, 8)]
+    return ".".join(
+        map(str, [int(sum([list(dict_values().keys())[x[0]] for x in list(
+            enumerate(map(int, list(i)))) if x[1] == 1])) for i in b_mask]))
