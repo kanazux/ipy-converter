@@ -33,6 +33,7 @@ The ipy-show gets an ip and mask in slash notation.
 
 
 def print_output(ip_data):
+    """Print output of ip data."""
     print(" {0: ^55} ".format("_" * 55))
     print("|{0: ^55}|".format(""))
     print("|{0: ^55}|".format("IPY-Show"))
